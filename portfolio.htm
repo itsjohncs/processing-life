@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="http://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet" type="text/css">
+    <link href="main.css" rel="stylesheet" type="text/css">
+    <style>
+        #project_navigation {
+            padding: 30px 0px 0px 50px;
+            margin-bottom: -10px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #project_navigation > li {
+            display: inline-block;
+            margin: 0px 10px 10px 0px;
+        }
+        #project_navigation > li > a {
+            cursor: pointer;
+            background-color: #99B2B7;
+            vertical-align: top;
+            padding: 10px;
+            font-family: Volkhov, "Times New Roman", serif;
+            font-weight: 700;
+            font-size: 16pt;
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            color: white;
+            opacity: 0.7;
+            text-decoration: none;
+        }
+
+        #project_navigation > li > a.current {
+            background-color: #99B2B7;
+            opacity: 1.0;
+            zoom: 1.1;
+        }
+    </style>
+    <script src="jquery-1.8.3.js"></script>
+    <script>
+        function rotate_blocks(next_block, animation) {
+            // Don't try to rotate while in the middle of another rotation.
+            if ($(".project_block:animated").length > 0)
+                return false
+
+            // Figure out which blocks we're rotating
+            var current_block = $(".project_block:visible")
+            next_block = next_block
+            animation = animation || "left_to_right"
+
+            if (current_block.get(0) === next_block.get(0))
+                return false
+
+            // The starting left position of the current block, and the ending
+            // position of the next block.
+            var desired_x = current_block.offset().left
+
+            var current_block_viewport_coordinates = {
+                left: current_block.offset().left - $(window).scrollLeft(),
+                top: current_block.offset().top - $(window).scrollTop(),
+                width: current_block.width(),
+                height: current_block.height()
+            }
+
+            var current_block_document_coordinates = {
+                left: current_block.offset().left,
+                top: current_block.offset().top,
+                width: current_block.width(),
+                height: current_block.height()
+            }
+
+            // Create a new element that matches the size of the currently
+            // displayed block.
+            var place_holder = current_block.clone().appendTo(current_block.parent())
+            place_holder.css(
+                    {
+                        position: "absolute",
+                        height: current_block_document_coordinates.height,
+                        width: current_block_document_coordinates.width,
+                        left: current_block_document_coordinates.left,
+                        top: current_block_document_coordinates.top,
+                        visibility: "hidden"
+                    }
+                )
+
+            if (animation == "left_to_right") {
+                current_block
+                    .css(
+                        {
+                            position: "fixed",
+                            left: current_block_viewport_coordinates.left,
+                            top: current_block_viewport_coordinates.top,
+                            width: current_block_viewport_coordinates.width
+                        }
+                    )
+                    .animate(
+                        {
+                            left: $(window).width(),
+                        },
+                        undefined,
+                        undefined,
+                        function () {
+                            current_block.css({position: "static", display: "none"})
+                        }
+                    )
+
+                next_block
+                    .css(
+                        {
+                            display: "block",
+                            position: "fixed",
+                            left: -current_block_viewport_coordinates.width * 2,
+                            width: current_block_viewport_coordinates.width,
+                            top: current_block_viewport_coordinates.top
+                        }
+                    )
+                    .animate(
+                        {
+                            left: current_block_viewport_coordinates.left
+                        },
+                        undefined,
+                        undefined,
+                        function() {
+                            next_block.css({position: "static", width: ""})
+
+                            place_holder.animate({height: next_block.height()}, undefined, undefined, function() {
+                                place_holder.remove()
+                            })
+                        }
+                    )
+            } else if (animation == "right_to_left") {
+                current_block
+                    .css(
+                        {
+                            position: "fixed",
+                            top: current_block_viewport_coordinates.top,
+                            left: current_block_viewport_coordinates.left,
+                            width: current_block_viewport_coordinates.width
+                        }
+                    )
+                    .animate(
+                        {
+                            left: -current_block_viewport_coordinates.width * 2,
+                        },
+                        undefined,
+                        undefined,
+                        function () {
+                            current_block.css({position: "static", display: "none"})
+                        }
+                    )
+
+                next_block
+                    .css(
+                        {
+                            display: "block",
+                            position: "fixed",
+                            top: current_block_viewport_coordinates.top,
+                            left: $(window).width() + current_block_viewport_coordinates.width,
+                            width: current_block_viewport_coordinates.width
+                        }
+                    )
+                    .animate(
+                        {
+                            left: current_block_viewport_coordinates.left,
+                        },
+                        undefined,
+                        undefined,
+                        function() {
+                            next_block.css({position: "static", width: ""})
+                            place_holder.animate({height: next_block.height()}, undefined, undefined, function () {
+                                place_holder.remove()
+                            })
+                        }
+                    )
+            }
+
+            return true
+        }
+
+        $(function ($) {
+            $(".project_block:not(.project_block:first)").css({display: "none"})
+
+            $("#project_navigation a").each(function () {
+                var anchor_name = $(this).attr("href").slice(1)
+                $(this).removeAttr("href")
+                $(this).attr("data-project", anchor_name)
+            })
+
+            $("#project_navigation a").click(function () {
+                var anchor_name = $(this).attr("data-project")
+                var next_block = $(".project_block:has('a[name=" + anchor_name + "]')")
+                var left_to_right = $("#project_navigation > li:has(a.current)").prevAll().has(this).length != 0
+                if (rotate_blocks(next_block, left_to_right ? "left_to_right": "right_to_left")) {
+                    $("#project_navigation a.current").removeClass("current")
+                    $(this).addClass("current")
+                }
+            })
+
+            $(document).keydown(function (e) {
+                var arrows = {left: 37, right: 39},
+                    next_button = $("#project_navigation > li:has(a.current)")
+
+                if (e.which == arrows.left) {
+                    next_button = next_button.prev().children("a")
+                } else if (e.which == arrows.right) {
+                    next_button = next_button.next().children("a")
+                }
+
+                next_button.click()
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="title_block">
+        <div class="container">
+            <div id="inner_title_block">
+                <div id="title">John Sullivan's Portfolio</div>
+            </div>
+        </div>
+    </div>
+    <!-- Triple div action. HTML can be a little silly sometimes -->
+    <div id="navbar">
+        <div class="container">
+            <div id="inner_navbar">
+                <ul>
+                    <li><a href="index.htm">Introduction</a></li>
+                    <li><a href="resume.htm">Resume</a></li>
+                    <li><a href="portfolio.htm" class="current">List of Projects</a></li>
+                    <!--<li><a href="bio.htm">Biography</a></li>
+                    <li><a href="life_stories.htm">Life Stories</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="content" class="container">
+        <ul id="project_navigation" class="container">
+            <li><a href="#galah" class="current">Galah</a></li><li><a href="#agc4">AGC4</a></li><li><a href="#cloak">Cloak</a></li><!--<li><a href="#particle">Particle Engine</a></li>-->
+        </ul>
+        <div class="project_block">
+            <div class="project_title"><a name="galah"></a>Galah</div>
+            <div class="project_description">
+                <p>
+                    Galah is an ongoing project that is being used at the University of California, Riverside for a number of classes. You can see the live deployment at UCR at <a href="https://galah.cs.ucr.edu">galah.cs.ucr.edu</a>. Note that UCR and Galah are not directly affiliated, and UCR is simply using Galah, all development is done by my partner and I,and intellectual property rights are entirelly in our name.
+                <p>
+                    Galah is a teaching utility that automatically analyzes students' code as they create it and provides feedback to both the students and the instructors. It does this by continually running tests on students' code and providing the results to both the instructors and the students.
+                </p>
+                <p>
+                    Professors are responsible for creating test harnesses for their assignments, aside from that Galah does the rest of the work: running those tests inside of a secure VM; consolodating results into a database; and providing an interface for the students and teachers to see the results of the testing.
+                </p>
+                <p style="text-align: right">
+                    <a href="http://www.galahgroup.com">Check out the official website</a>
+                </p>
+            </div>
+        </div>
+        <div class="project_block">
+            <div class="project_title"><a name="agc4"></a>Anti-Gravity Connect 4</div>
+            <div class="project_description">
+                <p>
+                    AGC4 is a game that grew out of a desire to play something similar to Connect Four, but different. AGC4 game is similar to Connect Four in that each player is trying to form a row, column, or diagonal of four of their color. Where this game deviates is where the players are allowed to place pieces: a piece may only be placed in a square which is connected to a continuous straight non-diagonal line of pieces to a wall.
+                </p>
+                <p style="text-align: right">
+                    <a href="http://www.github.com/brownhead/agc4">See the code on GitHub</a>
+                </p>
+            </div>
+        </div>
+        <div class="project_block">
+            <div class="project_title"><a name="cloak"></a>Cloak</div>
+            <div class="project_description">
+                <p>
+                    Cloak allows you to select any number of windows and a hotkey to hide all of those windows immediately when pressed (and another hotkey to bring them back). Additional features include an array of recovery options (if you forget the hotkey or something happens, just open another instance and select <i>Recover All Cloaked Windows</i>), the ability to change window captions, and the ability to set the translucency of windows.
+                </p>
+                <p style="text-align: right">
+                    <a href="http://www.github.com/brownhead/cloak">See the code on GitHub</a>
+                </p>
+            </div>
+        </div>
+        <!--<div class="project_block">
+            <div class="project_title"><a name="particle"></a>Particle Engine</div>
+            <div class="project_description">
+                <p>
+                    In the demo, particles will fly towards your cursor as you move your mouse around the screen, but if you hold one of the mouse buttons down the particles will fly away from your cursor with great speed. Have fun with it, there is no goal, the program was only meant to be appealing to the eye.
+                </p>
+                <p style="text-align: right">
+                    <a href="http://www.github.com/brownhead/galah">See the code on GitHub</a>
+                </p>
+            </div>
+        </div>-->
+    </div>
+</body>
+</html>
