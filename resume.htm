@@ -18,7 +18,7 @@
             <div id="inner_navbar">
                 <ul>
                     <li><a href="index.htm">Introduction</a></li>
-                    <li><a href="resume.htm" class="current">Resume</a></li>
+                    <li><a href="resume.htm" class="current">Long-Form Resume</a></li>
                     <li><a href="portfolio.htm">List of Projects</a></li>
                     <!--<li><a href="bio.htm">Biography</a></li>
                     <li><a href="life_stories.htm">Life Stories</a></li>-->
@@ -29,50 +29,85 @@
     <div class="container simple_content">
         <h1>Technologies</h1>
         <p>
-            Following is a list of technologies I have worked professionally with. Each list is sorted alphabetically.
+            Here I write about each technology I have worked professionally with. I talk about my experience with it, and try to convey why I thought it deserves mention (along with why I think I deserve to mention it) on this page. The technologies are sorted alphabetically, and not based on any perceived skill or preference.
         </p>
         <p>
-            I am confident that I can begin working at a professional level with any of these technologies with an hour or less or preparation. Go ahead an ask my about any of these.
+            I am confident that I can begin working at a professional level with any of these technologies with an hour or less of preparation. Feel free to quiz me on any of these, I enjoy brain teasers and programming problems (really though, please do give me warning to refresh myself on syntax and such or else let me reference the internet liberally, it's hard to keep such things fresh in my mind at all times).
+        </p>
+        <p>
+            There is a huge amount of technologies I have dabbled in or have an avid interest in, and though I have omitted many of them here, please ask me about anything (especially if you are avidly interested in a particular topic).
         </p>
         <h2>Programming Languages</h2>
-        <ul>
-            <li>C++</li>
-            <li>C#</li>
-            <li>JavaScript</li>
-            <li>Python</li>
-        </ul>
-        <h2>Frameworks</h2>
-        <ul>
-            <li>Boost <em>(certain libraries within)</em></li>
-            <li>Flask</li>
-            <li>jQuery</li>
-            <li>WPF</li>
-            <li>XNA</li>
-            <li>ZeroMQ</li>
-        </ul>
-        <h2>Misc Technologies</h2>
-        <ul>
-            <li>MongoDB</li>
-            <li>nginx</li>
-            <li>uWSGI</li>
-        </ul>
+        <h3>C++</h3>
+        <p>
+            I started learning this language sophomore year of high school five years ago after dabbling in C. C++ was my language of choice for about three years, and during my three-month-long internship at JetHead Development I was able to get some experience working with a massive C++ code base.
+        </p>
+        <h3>C#</h3>
+        <p>
+            I started with this language shortly after I started with C++ five years ago. I was asked to learn it quickly for a year-long contract I received. After finishing work on the project I continued playing with C# and ended up using it for another long-term contract along with various personal projects.
+        </p>
+        <h3>JavaScript</h3>
+        <p>
+            JavaScript is a language I grew up with, and a language that grew up with me. It was the first language I ever worked with, and is what I used when hacking silly websites together in third grade. Throughout my life JavaScript has come up in many of my projects, and it's rare for me to go long without hacking together a little JavaScript. Though I do not consider myself an avid JavaScript developer (I leave that title for those who are in love with Node.js) I am confident the code I produce with the language is professional and embraces the spirit of JavaScript.
+        </p>
+        <h3>Python</h3>
+        <p>
+            Python is my current language of choice, and is also the language in this list with which I have the least experience. I started working with it freshman year of college three years ago in order to develop Galah. Nowadays, it is rare for a day to go by where I do not write at least a little bit of Python code. I have too many good things to say about this language and please do be wary of my rambling in this regard. Despite my relative lack of experience with Python, I am positive I can work at a professional level with it.
+        </p>
+        <h2>Frameworks and Libraries</h2>
+        <h3>Boost</h3>
+        <p>
+            <a href="http://www.boost.org/">Boost</a> is an absolutely lovely collection of libraries and whenever I am writing in C++ and am not restricted from using it, I usually find a place for at least one of Boost's libraries in my code. In particular, <code>lexical_cast</code> finds its way into the majority of my projects, and so does the wonderful collection of smart pointers. Though I will absolutely not claim expertise in the Boost framework as a whole, I am certainly familiar with navigating its strange documentation and have at least read through the highlights of <em>every</em> library it provides.
+        </p>
+        <h3>Flask</h3>
+        <p>
+            I have tried a number of Python web frameworks including <a href="http://www.pylonsproject.org/">Pyramid</a>, <a href="http://webpy.org/">web.py</a>, and <a href="http://www.cherrypy.org/">CherryPy</a>, but none of them felt like they embraced the principles of Python better than the <a href="http://flask.pocoo.org/">Flask web framework</a>. Despite that Flask <a href="http://www.pocoo.org/~blackbird/flask-pycon-2011.pdf">started as an April Fool's joke</a>, it is an excellent framework and Galah's web interface uses it extensively.
+        </p>
+        <h3>jQuery</h3>
+        <p>
+            I was a late-comer to the <a href="http://jquery.com/">jQuery</a> train. When it came out I was already well versed in using JavaScript's native DOM and assumed jQuery did not have anything to offer me. As soon as I started using it however, I saw why it was so popular. Writing concise and beautiful JavaScript with jQuery is incredibly easy and, at least for me, jQuery changed the feel and spirit of JavaScript more than any other technology that has touched the language.
+        </p>
+        <h3>Windows Presentation Framework (WPF)</h3>
+        <p>
+            When I began with C#, <a href="http://en.wikipedia.org/wiki/Windows_Presentation_Foundation">WPF</a> had only been released for a couple years. The company I received my first C# contract from told me that it seemed to be the new big thing in the C# world and that I ought to use it when fulfilling my contract in the interest of future-proofing. After playing with it for a couple days I was extremely excited. My previous exploits into native GUI development were limited to <a href="https://en.wikipedia.org/wiki/Visual_Basic">Visual Basic 6</a> and <a href="http://qt-project.org/">Qt</a>, so getting to use a markup language to design the GUI while being able to easily separate the application logic was simply wonderful. XAML (the markup language used to design GUI's with WPF) is still my favorite way to design GUI's.
+        </p>
+        <h2>Miscellaneous</h2>
+        <h3>MongoDB</h3>
+        <p>
+            When making the initial design decisions for Galah, I had to choose which database to use. At the time, the <a href="https://en.wikipedia.org/wiki/NoSQL">NoSQL</a> movement seemed like it might be the future, and document stores seemed like a wonderful way to store the type of data I needed to store. I chose <a href="http://www.mongodb.org/">MongoDB</a> because it seemed like the best choice at the time, and I don't necessarily regret that choice. MongoDB is a wonderful database despite its problems, but I think we will move Galah away from it at some point. Regardless, I have a couple years of experience using it in a decent sized application and have a great amount of respect for it.
+        </p>
+        <h3>nginx</h3>
+        <p>
+            There are lots of great things to say about <a href="http://nginx.org/">nginx</a>. It is incredibly fast, the configuration is many times simpler than Apache, and it has a lot of interest. Whenever I deploy a website I choose to use nginx rather than any other web server, and have been working with it since I started development on Galah two years ago.
+        </p>
+        <h3>uWSGI</h3>
+        <p>
+            <a href="http://projects.unbit.it/uwsgi/">uWSGI</a> is an interesting application that sits between a web server (such as nginx) and your web application that supports the <a href="http://wsgi.readthedocs.org/en/latest/">WSGI</a> interface (yes talking about the two of them in the same conversation gets difficult). I have used it as long as I have been using nginx and Galah's recommended stack includes uWSGI.
+        </p>
+        <h3>Various Tools</h3>
+        <p>
+            It is worth mentioning I am familiar with a number of the standard software engineering tools (and some non-standard) that many programmers are implicitly expected to be familiar with at this point such as git, Bugzilla, GitHub, vim, and others, along with a number of system administrative tools such as ssh, iptables, init, ansible, etc. I can't guarantee I've used the same tools that your shop uses, but I've probably used tools that are similar.
+        </p>
+        <p>
+            If you're curious about my preferred development environment... I run Fedora on my laptop, I write code almost exclusively in Sublime Text 3, and I use git to version my projects.
+        </p>
         <h1>Work Experience</h1>
         <p>
-            I am a current undergraduate in college, so my work experience is not long and rich. However, I began working as a freelance developer in high school and have been active since then, so I am certainly not without work experience.
+            I am a current undergraduate in college, so my work experience is not long and rich. However, I began working as a freelance developer in high school and have been active since then, so I am certainly not completely green.
         </p>
         <h2>Freelance Development</h2>
         <p>
-            Starting my Freshman year of high school I worked as a freelance software engineer. I found jobs through RentACoder.com (which no longer exists) and CraigsList.
+            Starting my Freshman year of high school six years ago I worked as a freelance software engineer. I found jobs through RentACoder.com (which no longer exists) and CraigsList.
         </p>
         <p>
-            I did a number of contracts during those years, longer ones taking more than a year (had two of those I got off craigslist) and shorter ones that took significantly longer (had several of those from RentACoder).
+            I completed a number of contracts during those years, longer ones taking more than a year (had two of those I got off craigslist) and shorter ones that took significantly longer (had several of those from RentACoder).
         </p>
         <p>
             There are not a lot of records of my work during that time and I've even lost most of the code I created in those years. But some of it is still around that I'm happy to show anyone who is interested (though it will have to be in person as I do not have rights to distribute the code I made under contract).
         </p>
         <h2>JetHead</h2>
         <p>
-            I interned at JetHead Development Inc. last summer (the summer of 2012) and plan to do so again this summer. It was a traditional paid internship, and it was a lot of fun. My main achievement while there was a complete rewrite of the code that handled the display of closed captions on one of their new set top boxes. Having the freedom to completely write a large portion of important code was a lot of fun.
+            I interned at JetHead Development Inc. last summer (the summer of 2012) and plan to do so again this summer. It was a traditional paid internship, and it was a lot of fun. My main achievement while there was a complete rewrite of the code that handled the display of closed captions on one of their new set top boxes. Having the freedom to completely write from scratch a large portion of important code was a lot of fun, certainly more fun than fixing bugs in old code that I hadn't written.
         </p>
         <h2>Galah</h2>
         <p>

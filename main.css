@@ -12,12 +12,19 @@ a, a:visited {
     color: #7A6A53;
 }
 
+.simple_content {
+    padding: 20px;
+}
+
+.simple_content p {
+    padding: 0px 10px;
+}
+
 .simple_content h1, .simple_content h2, .simple_content h3 {
     font-family: Volkhov, Georgia, serif;
 }
 
 .simple_content h1 {
-    font-family: Volkhov, Georgia, serif;
     padding: 20px 15px;
     background-color: #D5DED9;
     font-size: 24pt;
@@ -29,7 +36,8 @@ a, a:visited {
 }
 
 .container {
-    max-width: 1024px;
+    max-width: 800px;
+    min-width: 400px;
     margin: 0px auto;
 }
 
