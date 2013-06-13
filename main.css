@@ -20,18 +20,18 @@ a, a:visited {
     padding: 0px 10px;
 }
 
-.simple_content h1, .simple_content h2, .simple_content h3 {
+h1, h2, h3, .project_title {
     font-family: Volkhov, Georgia, serif;
     font-weight: normal;
 }
 
-.simple_content h1 {
+h1, .project_title {
     padding: 20px 15px;
     background-color: #D5DED9;
     font-size: 24pt;
 }
 
-.simple_content h2 {
+h2 {
     padding: 15px 10px;
     background-color: #D9CEB2;
 }
@@ -112,16 +112,51 @@ hr {
     text-decoration: underline;
 }
 
+.project_title {
+    padding: 20px 15px;
+    margin: 0px;
+}
+
 .project_block {
-    padding: 30px 50px;
+    padding: 30px 0px;
     margin: 0px auto;
 }
 
-.project_title {
-    font-family: Volkhov, Georgia, serif;
-    padding: 20px 15px;
-    background-color: #D5DED9;
-    font-size: 24pt;
+#project_navigation {
+    padding: 30px 0px 0px 0px;
+    margin-bottom: -10px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#project_navigation > li {
+    display: inline-block;
+    margin: 0px 10px 10px 0px;
+}
+#project_navigation > li > a {
+    cursor: pointer;
+    background-color: #99B2B7;
+    vertical-align: top;
+    padding: 10px;
+    font-family: Volkhov, "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 16pt;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    color: white;
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+#project_navigation > li > a.current {
+    background-color: #99B2B7;
+    opacity: 1.0;
+    zoom: 1.1;
 }
 
 .project_description {
