@@ -112,6 +112,20 @@ hr {
     text-decoration: underline;
 }
 
+@media print, screen and (max-width: 600px) {
+  #inner_title_block {
+    padding: 15px;
+  }
+
+  #title {
+    font-size: 24pt;
+  }
+
+  #inner_navbar {
+    padding: 10.5px;
+  }
+}
+
 .project_title {
     padding: 20px 15px;
     margin: 0px;
