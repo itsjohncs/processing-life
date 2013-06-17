@@ -65,16 +65,18 @@ hr {
 }
 
 #inner_title_block {
-    padding: 75px 100px;
+    padding: 125px 0px;
 }
 
 #title {
     font-family: "Volkhov", serif;
-    font-size: 36pt;
+    font-size: 56pt;
 }
 
 #subtitle {
-    margin-top: 10px;
+    margin: 10px 0px 0px 20px;
+    font-family: "Volkhov", serif;
+    font-size: 24pt;
 }
 
 #navbar {
@@ -85,6 +87,18 @@ hr {
 
 #inner_navbar {
     padding: 10.5px 50px;
+}
+
+.section_outer {
+    font-family: Volkhov, Georgia, serif;
+    /*text-transform: lowercase;*/
+    background-color: #7A6A53;
+}
+
+.section_inner {
+    padding: 30px 50px;
+    color: white;
+    font-size: 28pt;
 }
 
 #navbar ul {
