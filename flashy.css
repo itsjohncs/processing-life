@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700);
+
 @font-face {
     font-family: 'League Gothic';
     src: url('leaguegothic-regular-webfont.eot');
@@ -32,22 +34,23 @@ body {
     vertical-align: middle;
 }
 
-.container {
+/* Landing Page */
+#landing_page {
+    background-color: #FFFFFF;
+    color: #161616;
+}
+
+#landing_page .container {
     max-width: 800px;
     min-width: 400px;
     margin: 0px auto;
 }
 
-/* Landing Page */
-#landing_page {
-    background-color: #FFFFFF;
-    color: #161616;
-    overflow: hidden;
-}
-
 #landing_page #background {
     overflow: hidden;
-    position: absolute;
+    position: fixed;
+    top: 0px;
+    left: 0px;
     z-index: 0;
 }
 
@@ -60,7 +63,7 @@ body {
 
 #landing_page #title {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 56pt;
+    font-size: 78px;
     font-weight: 500;
     margin-left: 230px;
     text-align: center;
@@ -71,8 +74,8 @@ body {
     padding: 10px 0px 0px 0px;
     font-family: "League Gothic", sans-serif;
     text-transform: uppercase;
-    font-weight: 500;
-    font-size: 24pt;
+    font-weight: normal;
+    font-size: 32px;
     margin-left: 230px;
 }
 
@@ -97,4 +100,79 @@ body {
 
 #landing_page a:hover {
     text-decoration: underline;
+}
+
+/* Resume */
+#resume {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    color: #161616;
+}
+
+#resume a {
+    color: #161616;
+}
+
+#resume p {
+    line-height: 1.62;
+}
+
+#resume .container {
+    max-width: 700px;
+    min-width: 400px;
+    padding-left: 30px;
+    margin: 0px 0px 0px 200px;
+}
+
+#resume #title {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 80px;
+    font-weight: 500;
+    text-align: center;
+}
+
+#resume #subtitle {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+}
+
+#resume #title_block {
+    background-color: #EFFFB9;
+    padding: 40px 0px 40px 0px;
+}
+
+#resume h1 {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 41px;
+    border-bottom: 4px solid #CBE86B;
+    border-top: 4px solid #CBE86B;
+}
+
+#resume h2 {
+    font-weight: 700;
+    font-size: 30px;
+    border-bottom: 4px solid #CBE86B;
+}
+
+#resume h3 {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+#resume .topic_experience {
+    font-weight: 400;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+#resume .topic_experience a {
+    margin: 0px 5px 0px 5px;
+}
+
+#resume .toc {
+    float: left;
+    background-color: white;
 }

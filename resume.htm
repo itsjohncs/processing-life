@@ -1,93 +1,136 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="http://fonts.googleapis.com/css?family=Old+Standard+TT:400,400italic,700|Volkhov:400,700" rel="stylesheet" type="text/css">
-    <link href="main.css" rel="stylesheet" type="text/css">
+    <link href="flashy.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body id="resume">
     <div id="title_block">
         <div class="container">
             <div id="inner_title_block">
                 <div id="title">John Sullivan</div>
-                <div id="subtitle">Current Projects / Resume / Blog</div>
+                <div id="subtitle">Long-form Resume (<a href="landing.htm">home</a>)</div>
             </div>
         </div>
     </div>
-    <!-- Triple div action. HTML can be a little silly sometimes -->
-    <div class="section_outer">
-        <div class="container">
-            <div class="section_inner">
-                Current Projects
-            </div>
-        </div>
+    <div class="toc">
+        <ul>
+            <li>
+                <span>Technologies</span>
+                <ul>
+                    <li>
+                        <span>Programming Languages</span>
+                        <ul>
+                            <li><a href="#cpp">C++</a></li>
+                            <li><a href="#csharp">C#</a></li>
+                            <li><a href="#js">JavaScript</a></li>
+                            <li><a href="#python">Python</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span>Frameworks/Librares</span>
+                        <ul>
+                            <li><a href="#boost">Boost</a></li>
+                            <li><a href="#flask">Flask</a></li>
+                            <li><a href="#jquery">jQuery</a></li>
+                            <li><a href="#wpf">WPF</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span>Miscellaneous</span>
+                        <ul>
+                            <li><a href="#mongodb">MongoDB</a></li>
+                            <li><a href="#nginx">nginx</a></li>
+                            <li><a href="#uwsgi">uWSGI</a></li>
+                            <li><a href="#devtools">Dev Tools</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span>Experience</span>
+                <ul>
+                    <li><a href="#freelancer">Freelance Work</a></li>
+                    <li><a href="#jethead">JetHead</a></li>
+                    <li><a href="#galah">Galah</a></li>
+                    <li><a href="#si">Supplemental Instructor</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
     <div class="container simple_content">
         <h1>Technologies</h1>
         <p>
-            Here I talk about my experience with various technologies I have worked professionally with, and try to convey why I think it deserves mention, along with why I think I deserve to mention it. The technologies are sorted alphabetically, not on any perceived skill or preference.
-        </p>
-        <p>
-            These are all technologies that I have worked with for a long time, and that I have worked with recently. I am confident that I can begin working at a professional level with any of these technologies with an hour or less of preparation. Any technology that I can not start working with immediately is not mentioned here.
+            <em>These are sorted alphabetically, not on any perceived skill or preference. They are all technologies I have a lot of confidence with.</em>
         </p>
         <h2>Programming Languages</h2>
+        <a name="cpp" />
         <h3>C++</h3>
         <p>
-            I started learning this language sophomore year of high school five years ago after dabbling in C. C++ was my language of choice for about three years, and during my three-month-long internship at JetHead Development I was able to get some experience working with a massive C++ code base.
+            I started learning this language sophomore year of high school five years ago after breifly working with C. C++ was my language of choice for about three years.
         </p>
+        <a name="csharp" />
         <h3>C#</h3>
         <p>
-            I started with this language shortly after I started with C++ five years ago. I was asked to learn it quickly for a year-long contract I received. After finishing work on the project I continued playing with C# and ended up using it for another long-term contract along with various personal projects.
+            I started with this language about the same time I started with C++ five years ago. I was asked to learn it quickly for a year-long contract I received and ended up using it extensively after that.
         </p>
+        <a name="js" />
         <h3>JavaScript</h3>
         <p>
-            JavaScript is a language I grew up with, and a language that grew up with me. It was the first language I ever worked with, and is what I used when hacking silly websites together in third grade. Throughout my life JavaScript has come up in many of my projects, and it's rare for me to go long without hacking together a little JavaScript. I do not have experience working on a huge JavaScript application like one might see when working with <a href="http://nodejs.org/">Node.js</a>, but I don't think I would have a prohibitive amount of difficulty working with one regardless.
+            I grew up with JavaScript and it was the first language I ever worked with.I used it when hacking tiny websites together in third grade and have used it in many projects since then.
         </p>
+        <a name="python" />
         <h3>Python</h3>
         <p>
-            Python is my current language of choice, and is also the language in this list with which I have the least experience. I started working with it freshman year of college three years ago in order to develop a large application. Nowadays, it is rare for a day to go by where I do not write at least a little bit of Python code and I have become intimately familiar with the language.
+            Python is my current language of choice. I started working with it freshman year of college three years ago and since then it has been rare for me to go a day without writing a little Python.
         </p>
         <h2>Frameworks and Libraries</h2>
+        <a name="boost" />
         <h3>Boost</h3>
         <p>
-            <a href="http://www.boost.org/">Boost</a> is an absolutely lovely collection of libraries and whenever I am writing in C++ and am not restricted from using it, I usually find a place for at least one of Boost's libraries in my code. In particular, lexical cast finds its way into the majority of my projects, and so does Boost's wonderful collection of smart pointers. Though I will absolutely not claim expertise in the Boost libraries as a whole, I am certainly familiar with navigating its strange documentation and have read through summaries of each and every library it provides on multiple occasions.
+            <a href="http://www.boost.org/">Boost</a> is a great library I use whenever I am writing in C++ and am not restricted from using it. Though I certainly haven't used even a majority of libraries in Boost, I have read through all of their summaries and usually have a good idea when it is appropriate to use them.
         </p>
+        <a name="flask" />
         <h3>Flask</h3>
         <p>
-            I have tried a number of Python web frameworks including <a href="http://www.pylonsproject.org/">Pyramid</a>, <a href="http://webpy.org/">web.py</a>, and <a href="http://www.cherrypy.org/">CherryPy</a>, but none of them felt like they embraced the ideals of Python better than the <a href="http://flask.pocoo.org/">Flask web framework</a>. Despite that Flask <a href="http://www.pocoo.org/~blackbird/flask-pycon-2011.pdf">started as an April Fool's joke</a>, it is an excellent framework and I have used it to design several web applications, including Galah's web interface.
+            I have tried a number of Python web frameworks including <a href="http://www.pylonsproject.org/">Pyramid</a>, <a href="http://webpy.org/">web.py</a>, and <a href="http://www.cherrypy.org/">CherryPy</a>, but none of them felt like they embraced the ideals of Python better than the <a href="http://flask.pocoo.org/">Flask web framework</a>. I have used it in several of my projects since I began playing with it a year ago.
         </p>
+        <a name="jquery" />
         <h3>jQuery</h3>
         <p>
-            I was a late-comer to the <a href="http://jquery.com/">jQuery</a> train. When it came out I was already well versed in using JavaScript's native DOM and assumed jQuery did not have anything to offer me. As soon as I started using it however, I saw why it was so popular. Most of the JavaScript code I've written in the past four years has depended heavily on JavaScript.
+            I was a late-comer to the <a href="http://jquery.com/">jQuery</a> train and only began using it about four years ago. Now I almost never write JavaScript code without using jQuery.
         </p>
+        <a name="wpf" />
         <h3>Windows Presentation Framework (WPF)</h3>
         <p>
-            When I began with C#, <a href="http://en.wikipedia.org/wiki/Windows_Presentation_Foundation">WPF</a> had only been released for a couple years. The company I received my first C# contract from told me that it seemed to be the new big thing in the C# world and that I ought to use it when fulfilling my contract in the interest of future-proofing. After playing with it for a couple days I was extremely excited. My previous exploits into native GUI development were limited to <a href="https://en.wikipedia.org/wiki/Visual_Basic">Visual Basic 6</a> and <a href="http://qt-project.org/">Qt</a>, so getting to use a markup language to design the GUI while being able to easily separate the application logic was simply wonderful. XAML (the markup language used to design GUI's with WPF) is still my favorite way to design GUI's.
+            My previous exploits into native GUI development were limited to <a href="https://en.wikipedia.org/wiki/Visual_Basic">Visual Basic 6</a> and <a href="http://qt-project.org/">Qt</a>, so <a href="http://en.wikipedia.org/wiki/Windows_Presentation_Foundation">WPF</a> truly wowed me. It is still undoubetedly my favorite tool for creating GUI's.
         </p>
         <h2>Miscellaneous</h2>
+        <a name="mongodb" />
         <h3>MongoDB</h3>
         <p>
-            When making the initial design decisions for Galah, I had to choose which database to use. At the time, the <a href="https://en.wikipedia.org/wiki/NoSQL">NoSQL</a> movement seemed like it might be the future, and document stores seemed like a wonderful way to store the type of data I needed to store. I chose <a href="http://www.mongodb.org/">MongoDB</a> because it seemed like the best choice at the time, and I don't necessarily regret that choice. MongoDB is a wonderful database despite its problems, but I think we will move Galah away from it at some point. Regardless, I have a couple years of experience using it in a decent sized application and have a great amount of respect for it.
+            My project <a href="http://www.galahgroup.com/galah">Galah</a> uses <a href="http://www.mongodb.org/">MongoDB</a> so I have gotten a lot of experience dealing with it. Fortunately, minus some difficulties getting backups to work correctly, MongoDB has performed perfectly and never have we had a problem with it.
         </p>
+        <a name="nginx" />
         <h3>nginx</h3>
         <p>
-            There are lots of great things to say about <a href="http://nginx.org/">nginx</a>. It is incredibly fast, the configuration is many times simpler than Apache, and it has a lot of interest. Whenever I deploy a website I choose to use nginx rather than any other web server, and have been working with it since I started development on Galah two years ago.
+            <a href="http://nginx.org/">nginx</a> is certainly my favorite web server at the moment. It is incredibly fast, the configuration is many times simpler than Apache, and it has a lot of interest. I have been working with it for nearly two years now.
         </p>
+        <a name="uwsgi" />
         <h3>uWSGI</h3>
         <p>
-            <a href="http://projects.unbit.it/uwsgi/">uWSGI</a> is an interesting application that sits between a web server (such as nginx) and your web application that supports the <a href="http://wsgi.readthedocs.org/en/latest/">WSGI</a> interface (yes talking about the two of them in the same conversation gets difficult). I have used it as long as I have been using nginx and Galah's recommended stack includes uWSGI.
+            <a href="http://projects.unbit.it/uwsgi/">uWSGI</a> is an interesting application that sits between a web server (such as nginx) and your web application that supports the <a href="http://wsgi.readthedocs.org/en/latest/">WSGI</a> interface (yes talking about the two of them in the same conversation gets difficult). I have used it as long as I have been using nginx.
         </p>
-        <h3>Various Tools</h3>
+        <a name="devtools" />
+        <h3>Development Tools</h3>
         <p>
-            It is worth mentioning that I am familiar with a number of the standard software engineering tools (and some non-standard) that many programmers are implicitly expected to be familiar with at this point such as git, Bugzilla, GitHub, vim, and others, along with a number of system administrative tools such as ssh, iptables, init, ansible, etc. I can't guarantee I've used the same tools that your shop uses, but I've probably used tools that are similar.
+            I am also familiar with many of the standard development tools such as git, Bugzilla, GitHub, vim, and others, along with a number of system administrative tools such as ssh, iptables, init, ansible, etc. I can't guarantee I've used the same tools that your shop uses, but I've probably used tools that are similar.
         </p>
+        <h1>Experience</h1>
         <p>
-            If you're curious about my preferred development environment... I run Fedora on my laptop, I write code almost exclusively in Sublime Text 3, and I use git to version my projects.
+            I am a current undergraduate in college, so my work history is not long and rich. However, I began working as a freelance developer in high school and have been active since then, so I am not completely green.
         </p>
-        <h1>Work Experience</h1>
-        <p>
-            I am a current undergraduate in college, so my work experience is not long and rich. However, I began working as a freelance developer in high school and have been active since then, so I am certainly not completely green.
-        </p>
-        <h2>Freelance Development</h2>
+        <a name="freelancer" />
+        <h2>Freelance Work</h2>
         <p>
             Starting my freshman year of high school six years ago I worked as a freelance software engineer. I found jobs through RentACoder.com (which no longer exists) and CraigsList.
         </p>
@@ -97,17 +140,20 @@
         <p>
             There are not a lot of records of my work during that time and I've even lost most of the code I created in those years. But some of it is still around that I'm happy to show anyone who is interested (though it will have to be in person as I do not have rights to distribute the code I made under contract).
         </p>
+        <a name="jethead" />
         <h2>JetHead</h2>
         <p>
-            I interned at JetHead Development Inc. last summer (the summer of 2012) and plan to do so again this summer. It was a traditional paid internship, and it was a lot of fun. My main achievement while there was a complete rewrite of the code that handled the display of closed captions on one of their new set top boxes. Having the freedom to completely write from scratch a large portion of important code was a lot of fun, certainly more fun than fixing bugs in old code that I hadn't written.
+            I interned at JetHead Development Inc. last summer (the summer of 2012) and plan to do so again this summer. It was a traditional paid internship, and it was a lot of fun. My proudest achievement while there was a complete rewrite of the code that handled the display of closed captions on one of their new set top boxes. Having the freedom to completely write from scratch a large portion of important code was a lot of fun, certainly more fun than fixing bugs in old code that I hadn't written.
         </p>
+        <a name="galah" />
         <h2>Galah</h2>
         <p>
-            I started the company Galah Group LLC with a friend of mine, Chris Manghane, to develop and promote our product Galah which you can read more about in the list of projects section of the portfolio.
+            I started the company Galah Group LLC with a friend of mine, Chris Manghane, to develop and promote our product <a href="https://www.galahgroup.com/galah">Galah</a>.
         </p>
         <p>
             Working on Galah has been an excuse to learn a great deal of things I would never have learned otherwise, and working closely with the system administrators and faculty at UCR who are using our product has been an amazing learning experience. I think I've learned more developing this project than any other project I've ever been able to work on.
         </p>
+        <a name="si" />
         <h2>Supplemental Instructor</h2>
         <p>
             I am a Supplemental Instructor at UCR and have been since my freshman year in college. My job is to help learning Computer Science students better their craft. Despite the job being fairly time consuming I enjoy it greatly and I hope wherever I end up after college involves me teaching at least part time.
