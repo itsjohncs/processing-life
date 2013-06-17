@@ -10,11 +10,11 @@ int CANVAS_WIDTH = (int)window.innerWidth;
 int CANVAS_HEIGHT = (int)window.innerHeight;
 
 // THe background color
-final color BACKGROUND = #D9CEB2;
+final color BACKGROUND = #FFFFFF;
 
 // The color the filles cells are drawn with (will actually be a value between
 // BACKGROUND and this color).
-final color FOREGROUND = #948C75;
+final color FOREGROUND = #EFFFB9;
 
 // The frames per second to render at.
 final int FPS = 10;
@@ -125,9 +125,9 @@ class Grid {
         }
 
         if (this.cells[i][j].alive) {
-          this.cells[i][j].heat = min(this.cells[i][j].heat + 0.01, 1.0);
+          this.cells[i][j].heat = min(this.cells[i][j].heat + 0.3, 1.0);
         } else {
-          this.cells[i][j].heat = max(this.cells[i][j].heat - 0.001, 0.0);
+          this.cells[i][j].heat = max(this.cells[i][j].heat - 0.2, 0.0);
         }
       }
     }
@@ -136,7 +136,7 @@ class Grid {
   void cool() {
     for (int i = 0; i < this.width; ++i) {
       for (int j = 0; j < this.height; ++j) {
-        this.cells[i][j].heat = max(this.cells[i][j].heat - 0.01, 0.0);
+        this.cells[i][j].heat = max(this.cells[i][j].heat - 0.2, 0.0);
       }
     }
   }
@@ -187,7 +187,7 @@ void setup() {
   frameRate(FPS);
   noStroke();
 
-  g = new Grid((int)(CANVAS_WIDTH / CELL_SIZE), (int)(CANVAS_HEIGHT / CELL_SIZE));
+  g = new Grid((int)ceil(CANVAS_WIDTH / CELL_SIZE), (int)ceil(CANVAS_HEIGHT / CELL_SIZE));
   g.randomize(START_DENSITY);
 }
 

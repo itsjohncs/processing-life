@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'League Gothic';
+    src: url('leaguegothic-regular-webfont.eot');
+    src: url('leaguegothic-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('leaguegothic-regular-webfont.woff') format('woff'),
+         url('leaguegothic-regular-webfont.ttf') format('truetype'),
+         url('leaguegothic-regular-webfont.svg#league_gothicregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* General */
 body {
     padding: 0px;
@@ -29,7 +40,7 @@ body {
 
 /* Landing Page */
 #landing_page {
-    background-color: #D9CEB2;
+    background-color: #FFFFFF;
     color: #161616;
     overflow: hidden;
 }
@@ -48,27 +59,42 @@ body {
 }
 
 #landing_page #title {
-    font-family: "Volkhov", serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 56pt;
-    margin-left: 210px;
-    padding-left: 50px;
+    font-weight: 500;
+    margin-left: 230px;
+    text-align: center;
 }
 
 #landing_page #subtitle {
-    padding: 10px 0px 0px 100px;
-    font-family: "Volkhov", serif;
+    text-align: center;
+    padding: 10px 0px 0px 0px;
+    font-family: "League Gothic", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
     font-size: 24pt;
-    margin-left: 210px;
+    margin-left: 230px;
+}
+
+#landing_page #subtitle a {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #landing_page #title_container {
-    max-width: 900px;
-    min-width: 400px;
     margin: 0px auto;
 }
 
 #landing_page #picture {
-    border: 10px solid #99B2B7;
-    border-bottom: 80px solid #99B2B7;
+    border: 10px solid #CBE86B;
+    border-bottom: 80px solid #CBE86B;
 }
 
+#landing_page a {
+    text-decoration: none;
+    color: #161616;
+}
+
+#landing_page a:hover {
+    text-decoration: underline;
+}
