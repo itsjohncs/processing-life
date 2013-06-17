@@ -105,7 +105,7 @@ body {
 /* Resume */
 #resume {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     color: #161616;
 }
 
@@ -120,8 +120,7 @@ body {
 #resume .container {
     max-width: 700px;
     min-width: 400px;
-    padding-left: 30px;
-    margin: 0px 0px 0px 200px;
+    margin: 0px auto;
 }
 
 #resume #title {
@@ -172,7 +171,22 @@ body {
     margin: 0px 5px 0px 5px;
 }
 
-#resume .toc {
-    float: left;
-    background-color: white;
+.toc {
+    padding-top: 10px;
+}
+
+#resume .toc a {
+    margin: 0px 5px 0px 5px;
+}
+
+#resume .toc h3 {
+    display: inline;
+    font-size: 16px;
+    color: #8CA341;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+#resume .toc_section {
+    margin: 15px 0px 15px 0px;
 }
