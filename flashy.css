@@ -137,6 +137,11 @@ body {
     text-align: center;
 }
 
+#resume #inner_title_block {
+    padding-bottom: 20px;
+    border-bottom: 2px solid #CBE86B;
+}
+
 #resume #subtitle {
     font-size: 30px;
     font-weight: 500;
@@ -144,22 +149,21 @@ body {
 }
 
 #resume #title_block {
-    background-color: #EFFFB9;
-    padding: 40px 0px 40px 0px;
+    padding: 40px 0px 10px 0px;
 }
 
 #resume h1 {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 41px;
-    border-bottom: 4px solid #CBE86B;
-    border-top: 4px solid #CBE86B;
+    border-bottom: 2px solid #CBE86B;
+    border-top: 2px solid #CBE86B;
 }
 
 #resume h2 {
     font-weight: 700;
     font-size: 30px;
-    border-bottom: 4px solid #CBE86B;
+    border-bottom: 2px solid #CBE86B;
 }
 
 #resume h3 {
@@ -175,10 +179,6 @@ body {
 
 #resume .topic_experience a {
     margin: 0px 5px 0px 5px;
-}
-
-.toc {
-    padding-top: 10px;
 }
 
 #resume .toc a {
