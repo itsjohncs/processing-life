@@ -4,10 +4,10 @@
 final int CELL_SIZE = 20;
 
 // The width of the canvas in pixels
-int CANVAS_WIDTH = (int)window.innerWidth;
+int CANVAS_WIDTH = null;
 
 // THe height of the canvas in pixels
-int CANVAS_HEIGHT = (int)window.innerHeight;
+int CANVAS_HEIGHT = null;
 
 // THe background color
 final color BACKGROUND = #FFFFFF;
@@ -61,9 +61,26 @@ class Grid {
   void clear() {
     for (int i = 0; i < this.width; ++i) {
       for (int j = 0; j < this.height; ++j) {
-        cells[i][j] = new Cell();
+        this.cells[i][j] = new Cell();
       }
     }
+  }
+
+  void resize(int width, int height) {
+    new_cells = new Cell[width][height];
+    for (int i = 0; i < width; ++i) {
+      for (int j = 0; j < height; ++j) {
+        if (i < this.width && j < this.height) {
+          new_cells[i][j] = this.cells[i][j];
+        } else {
+          new_cells[i][j] = new Cell();
+        }
+      }
+    }
+
+    this.cells = new_cells;
+    this.width = width;
+    this.height = height;
   }
 
   void randomize(float density) {
@@ -182,22 +199,35 @@ final int STATE_DYING = 1;
 
 int state = STATE_NORMAL;
 
+int desired_width() {
+  return CANVAS_WIDTH == null ? (int)window.innerWidth : CANVAS_WIDTH;
+}
+
+int desired_height() {
+  return CANVAS_HEIGHT == null ? (int)window.innerHeight : CANVAS_HEIGHT;
+}
+
 void setup() {
-  size(CANVAS_WIDTH, CANVAS_HEIGHT);
+  size(desired_width(), desired_height());
   frameRate(FPS);
   noStroke();
 
-  g = new Grid((int)ceil(CANVAS_WIDTH / CELL_SIZE), (int)ceil(CANVAS_HEIGHT / CELL_SIZE));
+  g = new Grid((int)ceil(width / CELL_SIZE), (int)ceil(height / CELL_SIZE));
   g.randomize(START_DENSITY);
 }
 
 void clear_screen() {
   fill(BACKGROUND);
-  rect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  rect(0, 0, width, height);
 }
 
 int counter = 0;
 void draw() {
+  if (height != desired_height() || width != desired_width()) {
+    size(desired_width(), desired_height());
+    g.resize((int)ceil(width / CELL_SIZE), (int)ceil(height / CELL_SIZE));
+  }
+
   clear_screen();
   g.draw();
 
