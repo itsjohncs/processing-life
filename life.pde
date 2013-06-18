@@ -14,7 +14,7 @@ final color BACKGROUND = #FFFFFF;
 
 // The color the filles cells are drawn with (will actually be a value between
 // BACKGROUND and this color).
-final color FOREGROUND = #EFFFB9;
+final color FOREGROUND = #EEEEEE;
 
 // The frames per second to render at.
 final int FPS = 10;
