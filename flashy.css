@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 /* General */
 body {
@@ -108,91 +108,4 @@ body {
 
 #landing_page a:hover {
     text-decoration: underline;
-}
-
-/* Resume */
-#resume {
-    font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    color: #161616;
-}
-
-#resume a {
-    color: #161616;
-}
-
-#resume p {
-    line-height: 1.62;
-}
-
-#resume .container {
-    max-width: 700px;
-    min-width: 400px;
-    margin: 0px auto;
-}
-
-#resume #title {
-    font-size: 80px;
-    font-weight: 500;
-    text-align: center;
-}
-
-#resume #inner_title_block {
-    padding-bottom: 20px;
-    border-bottom: 2px solid #CBE86B;
-}
-
-#resume #subtitle {
-    font-size: 30px;
-    font-weight: 500;
-    text-align: center;
-}
-
-#resume #title_block {
-    padding: 40px 0px 10px 0px;
-}
-
-#resume h1 {
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 41px;
-    border-bottom: 2px solid #CBE86B;
-    border-top: 2px solid #CBE86B;
-}
-
-#resume h2 {
-    font-weight: 700;
-    font-size: 30px;
-    border-bottom: 2px solid #CBE86B;
-}
-
-#resume h3 {
-    font-size: 25px;
-    font-weight: 700;
-}
-
-#resume .topic_experience {
-    font-weight: 400;
-    text-transform: uppercase;
-    font-style: italic;
-}
-
-#resume .topic_experience a {
-    margin: 0px 5px 0px 5px;
-}
-
-#resume .toc a {
-    margin: 0px 5px 0px 5px;
-}
-
-#resume .toc h3 {
-    display: inline;
-    font-size: 16px;
-    color: #8CA341;
-    text-transform: uppercase;
-    font-weight: 400;
-}
-
-#resume .toc_section {
-    margin: 15px 0px 15px 0px;
 }
