@@ -1,31 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>John Sullivan</title>
-    <link href="flashy.css" rel="stylesheet" type="text/css">
+    <title>Processing-Life</title>
     <script src="processing.js"></script>
+    <style>
+        canvas {
+            overflow: hidden;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 0;
+        }
+    </style>
 </head>
-<body id="landing_page">
+<body>
     <canvas id="background" data-processing-sources="life.pde"></canvas>
-    <div id="content" class="all_consuming">
-        <div class="vwrapper">
-            <div class="vcentered">
-                <div id="title_container" class="container">
-                    <img id="picture" src="self.jpg" width="210" height="210">
-                    <div id="title_inner_container">
-                        <h1 id="title" style="margin-left: 0px">John Sullivan</h1>
-                        <div id="subtitle">
-                            Software Engineer
-                        </div>
-                    </div>
-                </div>
-                <div id="links">
-                    <a href="http://johnsullivan.name">Portfolio</a> /
-                    <a href="https://www.github.com/brownhead">GitHub</a> /
-                    <a href="mailto:john@galahgroup.com">Email</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
