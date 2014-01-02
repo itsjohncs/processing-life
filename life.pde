@@ -6,10 +6,10 @@
 final int CELL_SIZE = 10;
 
 // The width of the canvas in pixels. 0 uses whole screen.
-int CANVAS_WIDTH = 0;
+final int CANVAS_WIDTH = 0;
 
 // THe height of the canvas in pixels. 0 uses whole screen.
-int CANVAS_HEIGHT = 0;
+final int CANVAS_HEIGHT = 0;
 
 // THe background color
 final color BACKGROUND = #FFFFFF;
