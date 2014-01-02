@@ -57,37 +57,52 @@ int state = STATE_NORMAL;
 // Program //
 /////////////
 
+/// A POD structure (if such a concept exists in Processing) that represents
+/// a single cell.
 class Cell {
-  // Whether the cell is alive or dead
+  /// True iff the cell is a "alive" in the context of the Game of Life.
   boolean alive;
 
-  // The "heat" of the cell which is a value in [0.0, 1.0] that tells how
-  // dark the cell should be rendered.
+  /// The "heat" of the cell which is a value in [0.0, 1.0] that tells how
+  /// dark the cell should be rendered.
   float heat;
 
-  // The time to step. A counter to help keep track of this cell's sense of
-  // time.
+  /// The time to step. A counter to help keep track of this cell's sense of
+  /// time.
+  ///
+  /// This value is decremented by a function of this cell's distance to the
+  /// cursor. It is always initialized to MAX_TIME_TO_STEP after this cell is
+  /// allowed to step.
   int tts;
 }
 
-// Wraps a value around a given max. Basically modulus but handles negative
-// numbers.
-int wrap(int v, int max) {
-  if (v < 0) {
-    int x = max - (-v) % 10;
+/// Wraps a value around a given max. Basically modulus but handles negative
+/// numbers appropriately (which Processing does not do natively).
+///
+/// `wrap(10, 10)` is `0`. `wrap(11, 10)` is `1`. `wrap(-1, 10)` is `9`.
+int wrap(int zv, int zmax) {
+  if (zv < 0) {
+    int x = zmax - (-zv) % 10;
     if (x == 10) {
       return 0;
     } else {
       return x;
     }
   } else {
-    return v % max;
+    return zv % zmax;
   }
 }
 
+/// Represents the entire game grid and implements much of the logic of
+/// Conway's Game of Life.
 class Grid {
+  /// The grid of cells that make up the grid.
   Cell cells_[][];
+
+  /// The width (in cells) of the grid.
   int width_;
+
+  /// The height (in cells) of the grid.
   int height_;
 
   Grid(int zwidth, int zheight) {
@@ -98,7 +113,7 @@ class Grid {
     this.height_ = zheight;
   }
 
-  // Completely wipes the board and gives it all new cells.
+  /// Completely wipes the board and gives it all new cells.
   void clear() {
     for (int i = 0; i < this.width_; ++i) {
       for (int j = 0; j < this.height_; ++j) {
@@ -107,11 +122,12 @@ class Grid {
     }
   }
 
-  // Resizes the board, preserving cells where possible
-  void resize(int width, int height) {
-    Cell new_cells[][] = new Cell[width][height];
-    for (int i = 0; i < width; ++i) {
-      for (int j = 0; j < height; ++j) {
+  /// Resizes the board, preserving cells where possible.
+  void resize(int zwidth, int zheight) {
+    // Create a new grid of cells and copy over as many cells as we can
+    Cell new_cells[][] = new Cell[zwidth][zheight];
+    for (int i = 0; i < zwidth; ++i) {
+      for (int j = 0; j < zheight; ++j) {
         if (i < this.width_ && j < this.height_) {
           new_cells[i][j] = this.cells_[i][j];
         } else {
@@ -120,19 +136,27 @@ class Grid {
       }
     }
 
+    // Overwrite the old values with the new grid and dimensions
     this.cells_ = new_cells;
-    this.width_ = width;
-    this.height_ = height;
+    this.width_ = zwidth;
+    this.height_ = zheight;
   }
 
-  // Randomly populate the game board. Density is imprecise because a cell
-  // can be brought to life twice.
-  void randomize(float density) {
+  /// Randomly populate the game board with the given density where density is
+  /// a value in [0.0, 1.0].
+  ///
+  /// The actual density of the board after this function completes will be
+  /// less than or equal to zdensity.
+  void randomize(float zdensity) {
+    // Make sure the entire board is cleared
     this.clear();
 
-    for (int i = 0; i < this.width_ * this.height_ * density; ++i) {
-      Cell cur = this.cells_[(int)random(this.width_ - 1)][(int)random(this.height_ - 1)];
-      cur.alive = true;
+    // Randomly bring to life many cells.
+    int cur_x, cur_y;
+    for (int i = 0; i < this.width_ * this.height_ * zdensity; ++i) {
+      cur_x = (int)random(this.width_ - 1);
+      cur_y = (int)random(this.height_ - 1);
+      this.cells_[cur_x][cur_y].alive = true;
     }
   }
 
@@ -155,7 +179,7 @@ class Grid {
   // Determine how much should be subtracted from a given cell's tts
   int _tts_mod(int x, int y) {
     // Figure out the size of the screen
-    float diagonal = dist(0, 0, desired_width(), desired_height());
+    float diagonal = dist(0, 0, width, height);
 
     // Figure out the distance between the current cell and the mouse
     float distance_to_mouse = dist(
@@ -335,8 +359,8 @@ void draw() {
     }
   }
 
-  int canvas_center_x = desired_width() / 2;
-  int canvas_center_y = desired_height() / 2;
+  int canvas_center_x = width / 2;
+  int canvas_center_y = height / 2;
 
   float img_alpha = dist(mouseX, mouseY, canvas_center_x, canvas_center_y);
   img_alpha = 500.0 / (img_alpha * img_alpha);
