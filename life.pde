@@ -5,11 +5,11 @@
 // The width of each cell in pixels
 final int CELL_SIZE = 10;
 
-// The width of the canvas in pixels. null uses whole screen.
-int CANVAS_WIDTH = null;
+// The width of the canvas in pixels. 0 uses whole screen.
+int CANVAS_WIDTH = 0;
 
-// THe height of the canvas in pixels. null uses whole screen.
-int CANVAS_HEIGHT = null;
+// THe height of the canvas in pixels. 0 uses whole screen.
+int CANVAS_HEIGHT = 0;
 
 // THe background color
 final color BACKGROUND = #FFFFFF;
@@ -67,40 +67,42 @@ class Cell {
 
   // The time to step. A counter to help keep track of this cell's sense of
   // time.
-  float tts;
+  int tts;
 }
 
 // Wraps a value around a given max. Basically modulus but handles negative
 // numbers.
 int wrap(int v, int max) {
-  // Since v won't ever be extremely negative in our program this should only
-  // ever recurse once at most.
   if (v < 0) {
-    v = max + v;
-    wrap(v, max);
+    int x = max - (-v) % 10;
+    if (x == 10) {
+      return 0;
+    } else {
+      return x;
+    }
+  } else {
+    return v % max;
   }
-
-  return v % max;
 }
 
 class Grid {
-  Cell cells[][];
-  int width;
-  int height;
+  Cell cells_[][];
+  int width_;
+  int height_;
 
-  Grid(int width, int height) {
-    this.cells = new Cell[width][height];
+  Grid(int zwidth, int zheight) {
+    this.cells_ = new Cell[zwidth][zheight];
     this.clear();
 
-    this.width = width;
-    this.height = height;
+    this.width_ = zwidth;
+    this.height_ = zheight;
   }
 
   // Completely wipes the board and gives it all new cells.
   void clear() {
-    for (int i = 0; i < this.width; ++i) {
-      for (int j = 0; j < this.height; ++j) {
-        this.cells[i][j] = new Cell();
+    for (int i = 0; i < this.width_; ++i) {
+      for (int j = 0; j < this.height_; ++j) {
+        this.cells_[i][j] = new Cell();
       }
     }
   }
@@ -110,17 +112,17 @@ class Grid {
     Cell new_cells[][] = new Cell[width][height];
     for (int i = 0; i < width; ++i) {
       for (int j = 0; j < height; ++j) {
-        if (i < this.width && j < this.height) {
-          new_cells[i][j] = this.cells[i][j];
+        if (i < this.width_ && j < this.height_) {
+          new_cells[i][j] = this.cells_[i][j];
         } else {
           new_cells[i][j] = new Cell();
         }
       }
     }
 
-    this.cells = new_cells;
-    this.width = width;
-    this.height = height;
+    this.cells_ = new_cells;
+    this.width_ = width;
+    this.height_ = height;
   }
 
   // Randomly populate the game board. Density is imprecise because a cell
@@ -128,22 +130,22 @@ class Grid {
   void randomize(float density) {
     this.clear();
 
-    for (int i = 0; i < this.width * this.height * density; ++i) {
-      Cell cur = cells[(int)random(this.width - 1)][(int)random(this.height - 1)];
+    for (int i = 0; i < this.width_ * this.height_ * density; ++i) {
+      Cell cur = this.cells_[(int)random(this.width_ - 1)][(int)random(this.height_ - 1)];
       cur.alive = true;
     }
   }
 
   void draw() {
-    for (int i = 0; i < this.width; ++i) {
-      for (int j = 0; j < this.height; ++j) {
-        if (this.cells[i][j].heat != 0.0) {
+    for (int i = 0; i < this.width_; ++i) {
+      for (int j = 0; j < this.height_; ++j) {
+        if (this.cells_[i][j].heat != 0.0) {
           // This takes care of the distance to mouse coloring
           color adjusted_foreground = lerpColor(
             FOREGROUND, FOREGROUND_BRIGHT, _tts_mod(i, j) / 100.0);
 
           fill(lerpColor(BACKGROUND, adjusted_foreground,
-            this.cells[i][j].heat));;
+            this.cells_[i][j].heat));;
           rect(i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE, CELL_SIZE);
         }
       }
@@ -177,7 +179,7 @@ class Grid {
           continue;
         }
 
-        if (this.cells[wrap(x + i, this.width)][wrap(y + j, this.height)].alive) {
+        if (this.cells_[wrap(x + i, this.width_)][wrap(y + j, this.height_)].alive) {
           ++result;
         }
       }
@@ -190,38 +192,38 @@ class Grid {
     // Determine the number of neighbors for each cell. Also keep track of
     // which cells are alive right now because we're about to modify the array
     // of cells in place.
-    int neighbors[][] = new int[this.width][this.height];
-    boolean alive[][] = new boolean[this.width][this.height];
-    for (int i = 0; i < this.width; ++i) {
-      for (int j = 0; j < this.height; ++j) {
-        alive[i][j] = cells[i][j].alive;
+    int neighbors[][] = new int[this.width_][this.height_];
+    boolean alive[][] = new boolean[this.width_][this.height_];
+    for (int i = 0; i < this.width_; ++i) {
+      for (int j = 0; j < this.height_; ++j) {
+        alive[i][j] = this.cells_[i][j].alive;
         neighbors[i][j] = _num_neighbors(i, j);
       }
     }
 
-    for (int i = 0; i < this.width; ++i) {
-      for (int j = 0; j < this.height; ++j) {
+    for (int i = 0; i < this.width_; ++i) {
+      for (int j = 0; j < this.height_; ++j) {
         // Determine if this cell gets to step through time right now
-        this.cells[i][j].tts -= _tts_mod(i, j);
-        if (this.cells[i][j].tts <= 0.0) {
+        this.cells_[i][j].tts -= _tts_mod(i, j);
+        if (this.cells_[i][j].tts <= 0.0) {
           // Determine if the cell should live or die
           if (alive[i][j]) {
-            this.cells[i][j].alive = (
+            this.cells_[i][j].alive = (
               neighbors[i][j] == 2 || neighbors[i][j] == 3
             );
           } else {
-            this.cells[i][j].alive = (neighbors[i][j] == 3);
+            this.cells_[i][j].alive = (neighbors[i][j] == 3);
           }
 
           // Heat or cool the cell to get the nice fading effect
-          if (this.cells[i][j].alive) {
-            this.cells[i][j].heat = min(this.cells[i][j].heat + 0.3, 1.0);
+          if (this.cells_[i][j].alive) {
+            this.cells_[i][j].heat = min(this.cells_[i][j].heat + 0.3, 1.0);
           } else {
-            this.cells[i][j].heat = max(this.cells[i][j].heat - 0.2, 0.0);
+            this.cells_[i][j].heat = max(this.cells_[i][j].heat - 0.2, 0.0);
           }
 
           // Reset the cell's time to step
-          this.cells[i][j].tts = MAX_TIME_TO_STEP;
+          this.cells_[i][j].tts = MAX_TIME_TO_STEP;
         }
       }
     }
@@ -229,39 +231,39 @@ class Grid {
 
   // Lower the head of every cell
   void cool() {
-    for (int i = 0; i < this.width; ++i) {
-      for (int j = 0; j < this.height; ++j) {
-        this.cells[i][j].heat = max(this.cells[i][j].heat - 0.1, 0.0);
+    for (int i = 0; i < this.width_; ++i) {
+      for (int j = 0; j < this.height_; ++j) {
+        this.cells_[i][j].heat = max(this.cells_[i][j].heat - 0.1, 0.0);
       }
     }
   }
 
   void kill_all() {
-    for (int i = 0; i < this.width; ++i) {
-      for (int j = 0; j < this.height; ++j) {
-        this.cells[i][j].alive = false;
+    for (int i = 0; i < this.width_; ++i) {
+      for (int j = 0; j < this.height_; ++j) {
+        this.cells_[i][j].alive = false;
       }
     }
   }
 
   float density() {
     int nalive = 0;
-    for (int i = 0; i < this.width; ++i) {
-      for (int j = 0; j < this.height; ++j) {
-        if (this.cells[i][j].alive) {
+    for (int i = 0; i < this.width_; ++i) {
+      for (int j = 0; j < this.height_; ++j) {
+        if (this.cells_[i][j].alive) {
           ++nalive;
         }
       }
     }
 
-    return ((float)nalive) / (this.width * this.height);
+    return ((float)nalive) / (this.width_ * this.height_);
   }
 
   // Returns true if the entire board's heat is 0
   boolean icy() {
-    for (int i = 0; i < this.width; ++i) {
-      for (int j = 0; j < this.height; ++j) {
-        if (this.cells[i][j].heat != 0.0) {
+    for (int i = 0; i < this.width_; ++i) {
+      for (int j = 0; j < this.height_; ++j) {
+        if (this.cells_[i][j].heat != 0.0) {
           return false;
         }
       }
@@ -272,24 +274,35 @@ class Grid {
 }
 
 int desired_width() {
-  return CANVAS_WIDTH == null ? (int)window.innerWidth : CANVAS_WIDTH;
+  return CANVAS_WIDTH == 0 ? (int)window.innerWidth : CANVAS_WIDTH;
 }
 
 int desired_height() {
-  return CANVAS_HEIGHT == null ? (int)window.innerHeight : CANVAS_HEIGHT;
+  return CANVAS_HEIGHT == 0 ? (int)window.innerHeight : CANVAS_HEIGHT;
 }
 
 void setup() {
+  // Resize our canvas to match our desired dimensions
   size(desired_width(), desired_height());
+
+  // This will determine how quickly the draw() function below is called
   frameRate(FPS);
+
+  // We never want to draw outlines on our shapes
   noStroke();
 
+  // Load the image we will place in the center of the canvas
   github_img = loadImage("github.png");
 
+  // Create our actual game grid (which contains most of the needed game
+  // logic).
   g = new Grid((int)ceil(width / CELL_SIZE), (int)ceil(height / CELL_SIZE));
+
+  // Initialize the grid to our desired starting density
   g.randomize(START_DENSITY);
 }
 
+/// @brief Fills the canvas with our background color.
 void clear_screen() {
   fill(BACKGROUND);
   rect(0, 0, width, height);
